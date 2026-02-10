@@ -86,7 +86,7 @@ h3{
 nav{
     height: 3vh;
     width: 100%;
-    margin-bottom: 20vh;
+    margin-bottom: 15vh;
 }
 label.logo{
     font-size: 35px;
@@ -172,11 +172,19 @@ a:hover{
 
 /* <===================HOME===================> */
 
+.container-in.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* horizontal center */
+    text-align: center;    /* center text */
+}
+
+
 .container-out{
     margin-top: 10vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content:space-between ;
 }
 .home-img{
     background-image: url(https://firebasestorage.googleapis.com/v0/b/chuck-842bb.appspot.com/o/GurAmanWed%2Fpic1.jpg?alt=media&token=5dbf5af2-354b-464c-9db2-7da57b484eda);
@@ -309,10 +317,11 @@ a:hover{
     background-size: cover;
     background-position: center;
 }
-.gallery-img:nth-child(1){
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/chuck-842bb.appspot.com/o/GurAmanWed%2Fpic3.jpg?alt=media&token=32a76585-cbeb-41f5-8921-6ad1ff60aa79);
-    background-position-x: right;
+.gallery-img:nth-child(1) {
+    background-image: url("images/image1.jpg");
+    background-position: right;
 }
+
 .gallery-img:nth-child(3){
     background-image: url(https://firebasestorage.googleapis.com/v0/b/chuck-842bb.appspot.com/o/GurAmanWed%2Fpic4.jpg?alt=media&token=3bde5693-e5c8-412d-bd47-1ef972258406);
 }
@@ -475,4 +484,77 @@ footer{
 footer h2{
     font-size: 2Srem;
     font-weight: normal;
+}
+
+/* <===================COUNTDOWN===================> */
+
+#countdown {
+  text-align: center;
+  padding: 20px 20px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.timer div {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  padding: 20px 25px;
+  border-radius: 16px;
+  min-width: 90px;
+}
+
+.timer span {
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: block;
+}
+
+.timer small {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* <===================MAP===================> */
+
+
+.location h2 {
+    font-size: 2.5rem;
+    margin-top: 200 px;
+    color: #323232; /* gold accent */
+    padding-top: 15%;
+    text-align: center;
+}
+
+.location p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    text-align: center;
+}
+
+#location {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.map-container {
+  max-width: 900px;
+  margin: 30px auto;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.map-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  background: #646464;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
 }
