@@ -215,18 +215,18 @@ h1, h2, h3, .logo {
     .checkbtn { display: block; }
     .nav-menu {
         position: fixed;
-        top: 70px; text-justify: -100%;
+        top: 70px; left: -100%;
         background: white;
         width: 100%; height: 100vh;
         flex-direction: column;
         padding-top: 50px;
         transition: 0.3s;
     }
-    #check:checked ~ .nav-menu { text-justify: 0; }
+    #check:checked ~ .nav-menu { left: 0; }
     .event-cards { grid-template-columns: 1fr; }
     .timer { grid-template-columns: repeat(2, 1fr); }
     .section-padding { padding: 60px 0; }
 }
 
 .footer { background: var(--primary); color: white; padding: 60px 0; text-align: center; }
-.contact-info { margin: 20px 0; }           
+.contact-info { margin: 20px 0; }
