@@ -1,68 +1,47 @@
-const parallax = document.getElementById("home-img-lg");
-const parallax1 = document.getElementById("parallax1");
-const parallax2 = document.getElementById("parallax2");
+// Intersection Observer for Reveal Animations (More efficient than scroll listeners)
+const revealCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+        }
+    });
+};
 
-window.addEventListener("scroll", function()
-{
+const revealObserver = new IntersectionObserver(revealCallback, {
+    threshold: 0.1
+});
+
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+// Parallax Effect for Hero
+window.addEventListener("scroll", () => {
+    const hero = document.querySelector(".hero");
     let offset = window.pageYOffset;
-    parallax.style.backgroundPositionX = offset*(-0.3)-100 + "px";
-})
+    hero.style.backgroundPositionY = offset * 0.5 + "px";
+});
 
+// Countdown Timer
+const weddingDate = new Date("June 11, 2026 10:00:00").getTime();
 
-window.addEventListener("scroll", function()
-{
-    let offset = window.pageYOffset;
-    offset-=3100;
-    parallax1.style.backgroundPositionY = offset*(0.1) + "px";
-})
+const updateCountdown = () => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
 
-window.addEventListener("scroll", function()
-{
-    let offset = window.pageYOffset;
-    offset-=4800;
-    parallax2.style.backgroundPositionY = offset*(-0.1) + "px";
-})
-
-function myFunction() {
-    document.getElementById("check").checked = false;
-  }
-
-
-  
-function reveal() {
-var reveals = document.querySelectorAll(".reveal");
-  
-for (var i = 0; i < reveals.length; i++) {
-      var windowHeight = window.innerHeight;
-      var elementTop = reveals[i].getBoundingClientRect().top;
-      var elementVisible = 150;
-  
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      } else {
-        reveals[i].classList.remove("active");
-      }
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "<h2>The Celebration Has Begun!</h2>";
+        return;
     }
-}
-  
-window.addEventListener("scroll", reveal);
 
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
 
+    document.getElementById("days").innerText = d.toString().padStart(2, '0');
+    document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+};
 
-const weddingDate = new Date("2026-08-15T09:00:00").getTime();
-
-setInterval(() => {
-  const now = new Date().getTime();
-  const diff = weddingDate - now;
-
-  if (diff < 0) return;
-
-  document.getElementById("days").innerText =
-    Math.floor(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("hours").innerText =
-    Math.floor((diff / (1000 * 60 * 60)) % 24);
-  document.getElementById("minutes").innerText =
-    Math.floor((diff / (1000 * 60)) % 60);
-  document.getElementById("seconds").innerText =
-    Math.floor((diff / 1000) % 60);
-}, 1000);
+setInterval(updateCountdown, 1000);
+updateCountdown(); // Initial call
