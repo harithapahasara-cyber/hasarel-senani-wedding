@@ -140,24 +140,59 @@ h1, h2, h3, .logo {
 }
 
 /* COUNTDOWN */
+/* Container for the boxes */
 .timer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    max-width: 600px;
-    margin: 0 auto;
+    display: flex;             /* Switch to flex for easier horizontal control */
+    justify-content: center;   /* Center the line of boxes on the page */
+    align-items: center;
+    gap: 15px;                 /* Space between boxes */
+    width: 100%;
+    flex-wrap: nowrap;         /* Force them to stay in one line */
+    margin: 30px auto;
 }
 
+/* Individual box styling */
 .time-box {
     background: var(--bg-soft);
-    padding: 20px;
-    border-radius: 15px;
+    padding: 15px;
+    border-radius: 12px;
     border: 1px solid rgba(197, 160, 89, 0.2);
-    transition: var(--transition);
+    
+    /* Centering the content inside the box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    /* Control the size */
+    flex: 1;                   /* Make all boxes equal width */
+    max-width: 120px;          /* Prevent them from getting too huge on desktop */
+    min-width: 70px;           /* Minimum size for mobile readability */
 }
 
-.time-box span { font-size: 2.5rem; display: block; color: var(--primary); font-weight: 700; }
-.time-box small { text-transform: uppercase; color: var(--accent); }
+.time-box span {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font size */
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+.time-box small {
+    font-size: clamp(0.6rem, 2vw, 0.8rem); /* Responsive label size */
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* Mobile specific adjustment */
+@media (max-width: 480px) {
+    .timer {
+        gap: 8px; /* Tighter gap for small screens */
+    }
+    .time-box {
+        padding: 10px 5px;
+    }
+}
 
 /* EVENT CARDS */
 .event-cards {
